@@ -1,6 +1,7 @@
 ## ML Engineering by Modules
 - **List of Modules**:
     1. [*Core Ideas & Preparation for the course*](#core-ideas)
+    2. [*Containerization*](#container)
     
 
 
@@ -14,3 +15,5 @@ brew install --cask docker
 After installing Docker I validated successfull installation using ```docker --version``` command that gives the current version of my Docker.
 - Working on terminal![](Module1/docker_terminal.jpg)
 - Working on Docker Desktop GUI![](Module1/docker_gui.jpg)
+
+### <a name="container">Containerization</a>
