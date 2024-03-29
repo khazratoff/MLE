@@ -1,9 +1,10 @@
 import uvicorn
 from fastapi import FastAPI
-from IrisFlower import IrisFlower
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
 import pandas as pd
+from pydantic import BaseModel
+
 print("Starting...\U0001f600")
 
 iris = load_iris()
@@ -17,6 +18,13 @@ app = FastAPI(title="Iris Flower Classification API",)
 
 
 
+
+class IrisFlower(BaseModel):
+    sepal_length: float
+    sepal_width: float
+    petal_length: float
+    petal_width: float
+    
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the ML Model API"}
@@ -34,5 +42,4 @@ def predict(data: IrisFlower):
 
 
 if __name__ == '__main__':
-    
     uvicorn.run(app, host='127.0.0.1', port=8000)
