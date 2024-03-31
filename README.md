@@ -48,3 +48,8 @@ docker run -p 8000:80 model-api-image
 Docker uses this parameter (`-p <out:port>:<in_port>`) to connect ports inside and outside.
 <p>
 Afer successfull run you can see info (output) and on your terminal, something like that:
+
+![alt text](screenshots/m2_ter.png)
+5. Next, go to the https://localhost:8000 and https://localhost:8000/info to check server is working.
+<br>
+6. Finally to get predictions of the model (RandomForestClassifier model trained on Iris flowers dataset) open https://localhost:8000/docs:
