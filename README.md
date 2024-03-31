@@ -19,3 +19,16 @@ But before diving into the project itself the question arises:
 > *"Why do we use docker, why do we need such separate environments (virtual env, python venv, etc)"*
 - *The best possible answer would be: Docker and virtual envs provides benefits such as isolation, reproducibility, dependency management, portability, scalability, environment consistency, and security.* 
 ### Project Overview and Quick Instructions
+All necessary files and code for this module can be found Module2 directory includes `Dockerfile` ,`requiremenets.txt` files at the root and `app.py` which is main script of the project in `/src` directory.
+<p>Now let's go through the step-by-step instructions on how all works
+
+1. Clone this repo to your local machine using this command: 
+
+```bash
+git clone https://github.com/khazratoff/MLE_HWs.git
+```
+2. By default  git switches to the `main` branch but the Module2 project written in another `containerization` branch to provide seperability of modules. So, let's switch to this:
+```bash
+git switch containeraztion
+```
+3. 
