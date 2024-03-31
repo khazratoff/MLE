@@ -1,7 +1,7 @@
 ## ML Engineering by Modules
 - **List of Modules**:
     1. [*Core Ideas & Preparation for the course*](#core-ideas)
-    
+    2. [*Containerization*](#container)
 
 
 ### <a name="core-ideas">Core Ideas & Preparation for the course</a>
@@ -59,5 +59,5 @@ You can see only one POST method there named `predict`, click on it:
 There's a "Try it out" button over there to test model API:
 - ![alt text](screenshots/m2_localhost_docs3.jpg)
 Give values to features and execute and you'll see the result like this:
-- ![alt text](m2_localhost_docs4.jpg)
+- ![alt text](screenshots/m2_localhost_docs4.jpg)
 <br><p>**Looking forward to get your feedback, and if you don't get any desired results please let me know.*
