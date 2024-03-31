@@ -47,7 +47,7 @@ docker run -p 8000:80 model-api-image
 ```
 Docker uses this parameter (`-p <out:port>:<in_port>`) to connect ports inside and outside.
 <p>
-Afer successfull run you can see info (output) and on your terminal, something like that:
+Afer successfull run you can see info (output) on your terminal, something like that:
 
 ![alt text](screenshots/m2_ter.png)
 **Next, go to the <a href="http://localhost:8000">localhost</a> and <a href="http://localhost:8000/info">info</a> to check server is working.**
