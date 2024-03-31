@@ -50,6 +50,14 @@ Docker uses this parameter (`-p <out:port>:<in_port>`) to connect ports inside a
 Afer successfull run you can see info (output) and on your terminal, something like that:
 
 ![alt text](screenshots/m2_ter.png)
-5. Next, go to the https://localhost:8000 and https://localhost:8000/info to check server is working.
+-  Next, go to the https://localhost:8000 and https://localhost:8000/info to check server is working.
 <br>
-6. Finally to get predictions of the model (RandomForestClassifier model trained on Iris flowers dataset) open https://localhost:8000/docs:
+-  Finally to get predictions of the model (RandomForestClassifier model trained on Iris flowers dataset) open https://localhost:8000/docs:
+- ![alt text](screenshots/m2_localhost_docs.jpg)
+You can see only one POST method there named `predict`, click on it:
+- ![alt text](screenshots/m2_localhost_docs2.jpg)
+There's a "Try it out" button over there to test model API:
+- ![alt text](screenshots/m2_localhost_docs3.jpg)
+Give values to features and execute and you'll see the result like this:
+- ![alt text](m2_localhost_docs4.jpg)
+<br><p>**Looking forward to get your feedback, and if you don't get any desired results please let me know.*
