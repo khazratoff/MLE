@@ -51,7 +51,7 @@ Afer successfull run you can see info (output) on your terminal, something like 
 
 ![alt text](screenshots/m2_ter.png)
 **Next, go to the <a href="http://localhost:8000">localhost</a> and <a href="http://localhost:8000/info">info</a> to check server is working.**
-- Finally to get predictions of the model (RandomForestClassifier model trained on Iris flowers dataset) open https://localhost:8000/docs:
+- Finally to get predictions of the model (RandomForestClassifier model trained on Iris flowers dataset) open <a href="http://localhost:8000/docs">model api</a>:
 - ![alt text](screenshots/m2_localhost_docs.jpg)
 You can see only one POST method there named `predict`, click on it:
 - ![alt text](screenshots/m2_localhost_docs2.jpg)
