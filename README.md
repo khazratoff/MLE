@@ -31,4 +31,18 @@ git clone https://github.com/khazratoff/MLE_HWs.git
 ```bash
 git switch containeraztion
 ```
-3. 
+3. Make sure that `Module2` folder appears on project directory. Now, it's time to build our Docker image using `Dockerfile` in that folder. First of all start the Docker engine using this command (in MacOS):
+```bash
+open -a Docker.app
+```
+Make sure you're in same directory as Dockerfile does and run this command to build an image:
+```bash
+docker build -t model-api-image .
+```
+After successful run you got an image built on top of Ubuntu base image.<br>
+4. Run the container:
+```bash
+docker run -p 8000:80 model-api-image 
+```
+Docker uses this parameter (`-p <out:port>:<in_port>`) to connect ports inside and outside.
+
