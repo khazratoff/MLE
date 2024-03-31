@@ -13,3 +13,6 @@ __pycache__/
 
 # Installer logs
 pip-log.txt
+
+# Directories
+Module2/
