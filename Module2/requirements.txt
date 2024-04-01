@@ -1,0 +1,5 @@
+scikit-learn==1.2.2
+pandas==2.0.3
+numpy==1.23.5
+fastapi==0.103.0
+uvicorn==0.20.0
