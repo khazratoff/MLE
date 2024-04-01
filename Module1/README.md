@@ -6,5 +6,5 @@ brew install --cask docker
 ```
 **Alternatively we can use GUI option of installation (drag-and-dropping)* <br>
 After installing Docker I validated successfull installation using ```docker --version``` command that gives the current version of my Docker.
-- Working on terminal![](Module1/docker_terminal.jpg)
-- Working on Docker Desktop GUI![](Module1/docker_gui.jpg)
+- Working on terminal![](docker_terminal.jpg)
+- Working on Docker Desktop GUI![](docker_gui.jpg)
