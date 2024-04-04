@@ -10,11 +10,11 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy the requirements file and install dependencies
-COPY  requirements.txt /app/requirements.txt
+COPY  requirements.txt utils.py /app/
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the FastAPI app code into the container
-COPY . /app
+COPY src /app/src
 
-# Command to run the FastAPI app
-CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "80"]
+
+CMD ["python3","src/data_loader.py"]
