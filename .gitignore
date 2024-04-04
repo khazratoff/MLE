@@ -4,7 +4,6 @@ __pycache__/
 .vscode
 
 # File Extensions
-*.csv
 *.pickle
 *.pyc
 
