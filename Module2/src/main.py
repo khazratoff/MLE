@@ -23,13 +23,13 @@ model.fit(X,y)
 print('model trained and saved successfully!')
 randomizer = np.random.randint(1000,9999)
 if not os.path.exists(MODEL_DIR):
-        os.makedirs(MODEL_DIR)
+        os.makedirs(MODEL_DIR, exist_ok=True)
 joblib.dump(model,MODEL_DIR+'/model_'+str(randomizer)+'.pkl')
 
 pred = model.predict(test_data)
 res = [i for i in pred]
 if not os.path.exists(RESULTS_DIR):
-        os.makedirs(RESULTS_DIR)
+        os.makedirs(RESULTS_DIR, exist_ok=True)
 result_dir = RESULTS_DIR+'/prediction_'+str(randomizer)+'.csv'
 
 pd.DataFrame(data = res,columns= ['Flower class:']).to_csv(result_dir,index=False)
