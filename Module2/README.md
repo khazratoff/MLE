@@ -44,6 +44,7 @@ docker exec -it <name_of_running_container> /bin/bash
 ```bash
 curl localhost:8000/info
 ```
+Alternatively, we can use `curl localhost:8000/health` command to check whether server is healthy.
 - If HTTP status is 200 then we are ready for testing our model with some test input. Give some value instead of 0's and check for model's output:
 ```bash
 curl -X 'POST' \
