@@ -40,6 +40,19 @@ docker run -p 5000:5000 -d --name mlflow-server --network mlflow-network server-
  docker run -v $(pwd)/best_models:/mlflow_app/best_models  -d --name mlflow-client --network mlflow-network client-image
  ```
  - *`-v` flag used for mounting `/best_models` folder as it saves best model artifacts after each successfull experiment*  
-
+6. Go to [**mlflow-ui**](http://localhost:5000)
 > After successfull running experiments make sure that `/best_models/` folder created in the root directory that contains best model artifacts.
 If you want to see what's going behind the scenes run ```docker logs <container-name>```
+-----
+- **Vizualizations on experiments**  
+1. *Experiment visualization on Logistic Regression model*  
+
+![alt text](plots/log-reg.jpg)  
+
+2. *Experiment visualization on Random Forests model*  
+
+![alt text](plots/rand-forest.jpg)  
+
+3. *Experiment visualization on XGBoost model*  
+
+![alt text](plots/xgboost.jpg)
