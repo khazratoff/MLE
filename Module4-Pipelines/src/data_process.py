@@ -1,13 +1,18 @@
 import os
+import sys
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-DATA_PATH = "../data"
-SOURCE_PATH = DATA_PATH + "/raw/human_factor_data.csv"
-EXTERNAL_SOURCE_PATH = DATA_PATH + "/raw/edu_factor_data.csv"
-PROCESSED_DATA_PATH = DATA_PATH + "/processed/"
+path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(path)
+
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_PATH = os.path.join(ROOT_DIR, "data/")
+SOURCE_PATH = os.path.join(DATA_PATH, "raw/human_factor_data.csv")
+EXTERNAL_SOURCE_PATH = os.path.join(DATA_PATH, "raw/edu_factor_data.csv")
+PROCESSED_DATA_PATH = os.path.join(DATA_PATH, "processed/")
 
 
 class StudentPerfomanceDataPrep:
@@ -63,8 +68,8 @@ class StudentPerfomanceDataPrep:
     def save_clean_data(self):
         if not os.path.exists(PROCESSED_DATA_PATH):
             os.makedirs(PROCESSED_DATA_PATH, exist_ok=True)
-        self.X_train.to_csv(PROCESSED_DATA_PATH + "X_train.csv")
-        self.X_test.to_csv(PROCESSED_DATA_PATH + "X_test.csv")
-        self.y_train.to_csv(PROCESSED_DATA_PATH + "y_train.csv")
-        self.y_test.to_csv(PROCESSED_DATA_PATH + "y_test.csv")
+        self.X_train.to_csv(os.path.join(PROCESSED_DATA_PATH, "X_train.csv"))
+        self.X_test.to_csv(os.path.join(PROCESSED_DATA_PATH, "X_test.csv"))
+        self.y_train.to_csv(os.path.join(PROCESSED_DATA_PATH, "y_train.csv"))
+        self.y_test.to_csv(os.path.join(PROCESSED_DATA_PATH, "y_test.csv"))
         print("Data saved successfully")

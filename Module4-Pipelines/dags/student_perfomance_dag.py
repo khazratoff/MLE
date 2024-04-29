@@ -5,9 +5,13 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 from sklearn.preprocessing import StandardScaler
 
-path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(path)
-from data_process import StudentPerfomanceDataPrep
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(ROOT_DIR)
+from src.data_process import StudentPerfomanceDataPrep
+
+DATA_PATH = os.path.join(ROOT_DIR, "data/")
+SOURCE_PATH = os.path.join(DATA_PATH, "raw/human_factor_data.csv")
+EXTERNAL_SOURCE_PATH = os.path.join(DATA_PATH, "raw/edu_factor_data.csv")
 
 stpd = StudentPerfomanceDataPrep(
     scaler=StandardScaler(),
@@ -42,13 +46,15 @@ dag = DAG(
     "Student_Performance_DAG",
     default_args=default_args,
     description="A simple DAG to process student performance data",
-    schedule_interval=timedelta(days=1),
+    schedule_interval=timedelta(minutes=5),
 )
 
+
 # Defining the tasks
-merge_data_source = PythonOperator(
-    task_id="merge_data_source",
+merge_external_source = PythonOperator(
+    task_id="merge_external_source",
     python_callable=stpd.merge_external_source,
+    op_args=[SOURCE_PATH, EXTERNAL_SOURCE_PATH],
     dag=dag,
 )
 
@@ -58,7 +64,7 @@ clean_data = PythonOperator(
     dag=dag,
 )
 
-clean_data.set_upstream(merge_data_source)
+clean_data.set_upstream(merge_external_source)
 
 split_data = PythonOperator(
     task_id="split_data",
@@ -79,3 +85,4 @@ save_data = PythonOperator(
     dag=dag,
 )
 save_data.set_upstream(scale_data)
+print("DAG created successfully")

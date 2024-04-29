@@ -1,6 +1,8 @@
+import os
 import pandas as pd
 
-DATA_PATH = "../data/raw/"
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_PATH = os.path.join(ROOT_DIR, "data/")
 
 
 def generate_data(data_path: str):
@@ -12,10 +14,10 @@ def generate_data(data_path: str):
     )
     human_factor_data = data[human_factor_columns]
     edu_factor_data = data[edu_factor_columns]
-    human_factor_data.to_csv(DATA_PATH + "human_factor_data.csv")
-    edu_factor_data.to_csv(DATA_PATH + "edu_factor_data.csv")
+    human_factor_data.to_csv(os.path.join(DATA_PATH, "raw/human_factor_data.csv"))
+    edu_factor_data.to_csv(os.path.join(DATA_PATH, "raw/edu_factor_data.csv"))
     print("Data generated successfully")
 
 
 if __name__ == "__main__":
-    generate_data(DATA_PATH + "data.csv")
+    generate_data(os.path.join(DATA_PATH, "raw/data.csv"))
