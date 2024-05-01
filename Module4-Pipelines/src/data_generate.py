@@ -17,7 +17,3 @@ def generate_data(data_path: str):
     human_factor_data.to_csv(os.path.join(DATA_PATH, "raw/human_factor_data.csv"))
     edu_factor_data.to_csv(os.path.join(DATA_PATH, "raw/edu_factor_data.csv"))
     print("Data generated successfully")
-
-
-if __name__ == "__main__":
-    generate_data(os.path.join(DATA_PATH, "raw/data.csv"))
