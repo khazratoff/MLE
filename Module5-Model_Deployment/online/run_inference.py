@@ -1,6 +1,9 @@
 import os
+import sys
 import requests
 import pandas as pd
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils import INFERENCE_DATA_PATH, OUTPUT_PATH, MODEL_REST_API_URL
 
 
@@ -29,7 +32,7 @@ def infernce():
         os.makedirs(OUTPUT_PATH, exist_ok=True)
     pd.DataFrame(
         {"Image Name": image_names, "Class": labels, "Probability": probabilities}
-    ).to_csv(os.path.join(OUTPUT_PATH, "predictions.csv"), index=False)
+    ).to_csv(os.path.join(OUTPUT_PATH, "restAPI_predictions.csv"), index=False)
 
 
 if __name__ == "__main__":

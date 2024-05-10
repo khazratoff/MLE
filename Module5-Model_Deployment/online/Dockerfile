@@ -10,7 +10,7 @@ COPY requirements.txt /app/requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY /online/ /app/online/
-COPY data_loader.py /app/data_loader.py
+COPY utils.py /app/utils.py
 
 EXPOSE 5000
 

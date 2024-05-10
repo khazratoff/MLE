@@ -1,6 +1,6 @@
 import gdown
 import os
-from online.utils import DATA_URL
+from utils import DATA_URL
 
 
 def load_data(url):
