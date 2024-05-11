@@ -4,3 +4,5 @@
     2. [*Containerization*](#container)
     3. [*Experiment Tracking*](#ex-track)
     4. [*Pipelines*](#pipeline)
+    5. [*Model Deployment*](#model-dep)
+
