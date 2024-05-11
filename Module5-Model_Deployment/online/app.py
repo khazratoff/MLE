@@ -1,8 +1,12 @@
+import os
+import sys
 from keras.applications import imagenet_utils
 from PIL import Image
 import flask
 import io
-from preprocess import prepare_image, load_model
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils import prepare_image, load_model
 
 # initialize our Flask application and the Keras model
 app = flask.Flask(__name__)

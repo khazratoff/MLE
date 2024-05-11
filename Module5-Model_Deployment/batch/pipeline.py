@@ -1,33 +1,13 @@
 import os
 import sys
 import io
-import numpy as np
 import pandas as pd
-from keras.applications import ResNet50
-from keras.preprocessing.image import img_to_array
 from keras.applications import imagenet_utils
 from PIL import Image
 
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils import INFERENCE_DATA_PATH, OUTPUT_PATH
-
-
-def load_model():
-    print("[INFO] loading model...")
-    model = ResNet50(weights="imagenet")
-    return model
-
-
-def prepare_image(image, target):
-    if image.mode != "RGB":
-        image = image.convert("RGB")
-
-    image = image.resize(target)
-    image = img_to_array(image)
-    image = np.expand_dims(image, axis=0)
-    image = imagenet_utils.preprocess_input(image)
-    return image
+from utils import INFERENCE_DATA_PATH, OUTPUT_PATH, load_model, prepare_image
 
 
 def infernce(model):

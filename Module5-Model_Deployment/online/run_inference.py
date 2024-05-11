@@ -8,7 +8,6 @@ from utils import INFERENCE_DATA_PATH, OUTPUT_PATH, MODEL_REST_API_URL
 
 
 def infernce():
-
     images = os.listdir(INFERENCE_DATA_PATH)
     labels = []
     probabilities = []
