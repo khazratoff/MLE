@@ -11,9 +11,10 @@ RUN pip install --upgrade pip &&\
     
 WORKDIR /app
     
-COPY utils.py /app/utils.py
-COPY /batch/cron.txt .
-COPY /batch/pipeline.py /app/pipeline.py
+COPY /src/ICMD/batch/pipeline.py /app/pipeline.py
+COPY /src/ICMD/utils.py /app/utils.py
+COPY /src/ICMD/batch/cron.txt .
+
 
 RUN crontab -u root cron.txt && rm cron.txt
 
