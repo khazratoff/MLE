@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
@@ -9,10 +10,10 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(ROOT_DIR)
 from src.data_process import StudentPerfomanceDataPrep
 from src.data_generate import generate_data
+from src.constants import ROOT_DIR, DATA_PATH, SOURCE_PATH, EXTERNAL_SOURCE_PATH
 
-DATA_PATH = os.path.join(ROOT_DIR, "data/")
-SOURCE_PATH = os.path.join(DATA_PATH, "raw/human_factor_data.csv")
-EXTERNAL_SOURCE_PATH = os.path.join(DATA_PATH, "raw/edu_factor_data.csv")
+with open(os.path.join(ROOT_DIR, "dags/config.json"), "r") as f:
+    config = json.load(f)
 
 stpd = StudentPerfomanceDataPrep(
     scaler=StandardScaler(),
@@ -20,28 +21,7 @@ stpd = StudentPerfomanceDataPrep(
     random_state=42,
 )
 
-default_args = {
-    "owner": "airflow",
-    "depends_on_past": True,
-    "email": "airflow@example.com",
-    "email_on_failure": True,
-    "email_on_retry": False,
-    "retries": 3,
-    "retry_delay": timedelta(minutes=5),
-    "retry_exponential_backoff": False,
-    "max_retry_delay": timedelta(hours=1),
-    "start_date": datetime.now(),
-    # "schedule_interval": "@daily",
-    # "catchup": False,
-    # "sla": timedelta(hours=2),
-    # "execution_timeout": timedelta(minutes=30),
-    # "queue": "default",
-    # "priority_weight": 1,
-    # "wait_for_downstream": True,
-    # "trigger_rule": "all_success",
-    # "pool": "default_pool",
-}
-
+default_args = config["student_performance_dag"]["default_args"]
 # Defining the DAG
 dag = DAG(
     "Student_Performance_DAG",

@@ -1,9 +1,7 @@
 import os
 import pandas as pd
 
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-DATA_PATH = os.path.join(ROOT_DIR, "data/")
-
+from constants import DATA_PATH
 
 def generate_data(data_path: str):
     """Manually splitting dataset into two parts based human factors and educational factors"""
