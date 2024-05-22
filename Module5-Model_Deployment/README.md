@@ -20,7 +20,7 @@ cd Module5-Model_Deployment
 
 **Requirement: `gdown` package should be installed to gather inference data*. So let's install using **pip** (Choose the version as shown below other newer versions will not work):
 ```bash
-pip install down==4.6.1
+pip install gdown==4.6.1
 ```
 
 Now let's download inference data:
