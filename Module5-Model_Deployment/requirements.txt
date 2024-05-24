@@ -5,3 +5,4 @@ pandas==2.0.3
 tensorflow==2.15.0
 h5py==3.10.0
 gdown==4.6.1
+python-crontab==3.1.0

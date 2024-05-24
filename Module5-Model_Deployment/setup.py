@@ -7,32 +7,33 @@ from typing import List
 from setuptools import find_packages, setup
 
 
-readme = (Path(__file__).parent / 'README.md').read_text()
+readme = (Path(__file__).parent / "README.md").read_text()
 
 
-def get_dependencies() -> List[str]:
-    with Path('requirements.txt').open() as file:
-        dependencies = [line.rstrip() for line in file if not line.startswith('-') and '@git' not in line]
-    return dependencies
-
+REQUIREMENTS_PATH = os.path.join(
+    os.path.abspath(os.path.dirname(__file__)), "requirements.txt"
+)
+with open(REQUIREMENTS_PATH, "r", encoding="utf-8") as requirements_file:
+    install_requires = requirements_file.read().splitlines()
 
 setup(
-    name='ICMD Project',
-    version='0.0.1',
-    author='Izzatillo Khazratov',
-    description='Online & batch prediction for model deployment',
+    name="icmd_project",
+    version="0.0.1",
+    author="Izzatillo Khazratov",
+    description="Online & batch prediction for model deployment",
     long_description=readme,
-    long_description_content_type='text/markdown',
-    packages=find_packages(exclude=['tests', 'docs'],include=['src']),
-    # include_package_data=True,
-    install_requires=get_dependencies(),
+    long_description_content_type="text/markdown",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    include_package_data=True,
+    install_requires=install_requires,
     entry_points={
-        'console_scripts': [
-            'load-data=src.ICMD.data_loader:main',
-            'start-server=src.ICMD.online.app:main',
-            'run-inference-online=src.ICMD.online.run_inference:main',
-            # 'run-inference-batch=src.titanic_project.batch.batch_pipeline:main',
+        "console_scripts": [
+            "load-data=ICMD.data_loader:main",
+            "start-server=ICMD.online.run_server:main",
+            "run-inference-online=ICMD.online.run_inference:main",
+            "schedule-batch-inference=ICMD.batch.schedule:main",
         ],
     },
-    python_requires='>3.8',
+    python_requires=">3.8",
 )

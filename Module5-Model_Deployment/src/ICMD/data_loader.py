@@ -1,5 +1,8 @@
+import sys
 import gdown
 import os
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from utils import DATA_URL, INFERENCE_DATA_PATH
 
 
@@ -9,5 +12,9 @@ def load_data(url):
     gdown.download_folder(url=url, output=INFERENCE_DATA_PATH, remaining_ok=True)
 
 
-if __name__ == "__main__":
+def main():
     load_data(DATA_URL)
+
+
+if __name__ == "__main__":
+    main()
