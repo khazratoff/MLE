@@ -6,13 +6,14 @@ from PIL import Image
 from keras.applications.resnet50 import decode_predictions
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils import load_model, prepare_image
+from src.ICMD.utils import load_model, prepare_image
 
 
 class TestModelIO(tf.test.TestCase):
     def test_input_output(self):
         model = load_model()
-        image = open("test_img.jpeg", "rb").read()
+        img_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bus.jpeg")
+        image = open(img_path, "rb").read()
         image = Image.open(io.BytesIO(image))
         image = prepare_image(image, target=(224, 224))
 
