@@ -18,7 +18,7 @@ git clone https://github.com/khazratoff/MLE_HWs.git
 cd Module5-Model_Deployment
 ```
 
-**Inferencing** *can be done in* **local environment** *and using* **Docker**. *Let's go through one by one*
+**Inferencing** *can be done in* **local environment** *and using* **Docker**. *Let's go through one by one.*
 
 1. Running inference in local environment:
     1. Create a virtual environment, let's call it "icmd_env":
@@ -31,7 +31,7 @@ cd Module5-Model_Deployment
    ```
    **Use `.` instead of `source` command if you are not using bash shell or another that doesn't support this command*
 
-   3. Setup-tools based installation. Install all necessary dependancies and custom console scripts:
+   3. Setup-tools based installation. Install all necessary dependencies and custom console scripts:
    ```bash
    pip install -e .
    ```
