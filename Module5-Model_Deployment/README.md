@@ -8,7 +8,7 @@ The project aimed to demonstrate how ML model can be prepared for deployment in 
 The project can be logically divided into 3 parts:
 1. `/src` folder containes all the *code*, *scripts*, *dockerfiles* that necessary for the model deployment preparation.
 2. `/tests` contains test that checks input/ output flow behaving correctly. 
-3. `pyproject.toml` and `LICENSE` files can be used to package the project.
+3. `setup.py` file can be used to package the project.
 ----
 - **Quick Instructions**
 
@@ -18,69 +18,60 @@ git clone https://github.com/khazratoff/MLE_HWs.git
 cd Module5-Model_Deployment
 ```
 
-**Requirement: `gdown` package should be installed to gather inference data*. So let's install using **pip** (Choose the version as shown below other newer versions will not work):
-```bash
-pip install gdown==4.6.1
-```
+**Inferencing** *can be done in* **local environment** *and using* **Docker**. *Let's go through one by one*
 
-Now let's download inference data:
-```bash
-python src/ICMD/data_loader.py
-```
-Script downloads the data and places it in `resources` folder for further processing.
+1. Running inference in local environment:
+    1. Create a virtual environment, let's call it "icmd_env":
+    ```bash
+    python -m venv icmd_env
+    ```
+    2. Activate this environment:
+    ```bash
+   source icmd_env/bin/activate
+   ```
+   **Use `.` instead of `source` command if you are not using bash shell or another that doesn't support this command*
 
-i. Now we are ready to inference our model. So let's start with *online* mode that uses **Flask** to create REST API.
-1. Create a Docker image:
-```bash
-docker build -f src/ICMD/online/Dockerfile -t rest_model_image . 
-```
-2. Run the instance of that image:
-```bash
-docker run --name modelapi -v $(pwd)/resources:/app/resources rest_model_image  
-```
-*The container builds a Flask server that's ready to listen a request. In our case, the response is nothing but an image. So let's test a server by providing a sample image. using `curl`*
-
-3. Install `curl` which is not installed by default and check whether the server running. For that we need to `exec` the current running container:
-```bash
-docker exec -it modelapi /bin/bash
-apt-get install curl
-curl -X GET 'http://localhost:5000/'
-```
-4. Test a server by giving sample image as request:
-```bash
-curl -X POST -F image=@car.jpeg 'http://localhost:5000/predict'
-```
-*You can get a prediction as a list with probabilty*
-
-5. Now let's do the model inference on newly downloaded data in running container.
+   3. Setup-tools based installation. Install all necessary dependancies and custom console scripts:
+   ```bash
+   pip install -e .
+   ```
+   4. **Inferencing**. Load the data:
+   ```bash
+   load-data
+   ```
+   5. Start flask server:
+   ```bash 
+   start-server
+   ```
+   6. Run inference online and store results in `/recources/output/` folder.
+   ```bash
+   run-inference-online
+   ```
+   7. Schedule batch inferencing (based on crontab) and store results in`/recources/output/`: 
+   ```bash
+    schedule-batch-inference 
+    ```
+2. Inferencing using Docker
+    1. Create a network called `flask-network`:
+    ```bash
+    docker network create flask-network 
+    ```
+    2. Create a server image and client images:
+    ```bash
+    docker build -f docker/server/Dockerfile -t server-image .
+    docker build -f docker/client/Dockerfile -t client-image .
+    ```
+    3. Run server container:
+    ```bash
+    docker run --name flask-server --network flask-network -p 5000:5000 server-image
+    ```
+    4. Run client container:
+    ```bash
+    docker run -v $(pwd)/resources:/app/resources --network flask-network -e FLASK_SERVER_HOST=flask-server client-image
+    ```
+    *See the results in `resources` folder*.
+    
+3. Testing.
 ```bash 
-python online/run_inference.py
+pytest
 ```
-*After successfull run you'll get a predictions in `restAPI_predictions.csv` file in `/resources/output/` folder which is mounted with local file system so that easily accessible.*
-
-ii. Now turn to *batch* mode. For scheduling `cron` tool used with the expression `* * * * *` means that model inferencing should be done in every minute (it's because not to waste a time with waiting and the project is just for simulation not for real-world scenario)
-
-1. For batch, create a Docker image:
-```bash
- docker build -f src/ICMD/batch/Dockerfile -t batch_model_image .
- ```
-2. Run the instance:
-```bash
-docker run -d -v $(pwd)/resources:/app/resources batch_model_image
-```
-- *After successful run, container does inferencing in every minute and stores new predictions as `batch_predictions.csv` in `/resources/output/` folder*
-- In addition, *Dockerfile* will be created for online inferencing in the same folder.
-
-iii. Packaging the project:
-1. Upgrade the *pip* and *build*:
-```bash 
-python -m pip install --upgrade pip
-python -m pip install --upgrade build
-```
-2. Run the command:
-```bash
-python -m build
-```
-
->That's all for now, I am looking forward to your feedback for further development
-

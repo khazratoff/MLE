@@ -10,8 +10,9 @@ ROOT_DIR = os.path.abspath(
 )
 INFERENCE_DATA_PATH = os.path.join(ROOT_DIR, "resources/inference_data")
 OUTPUT_PATH = os.path.join(ROOT_DIR, "resources/output")
-MODEL_REST_API_URL = "http://localhost:5000/predict"
-DATA_URL = "https://drive.google.com/drive/folders/18DUm8UbsHQ7C2GMfrJJfwo31c8meRViK?usp=sharing"
+HOST = os.getenv("FLASK_SERVER_HOST", "localhost")
+MODEL_REST_API_URL = f"http://{HOST}:5000/predict"
+DATA_URL = "https://drive.google.com/drive/folders/1bnNR9WhnY-cEjqkBvpRoh2antY4kEttG?usp=sharing"
 
 
 def load_model():

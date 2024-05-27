@@ -60,4 +60,4 @@ if __name__ == "__main__":
             "please wait until server has fully started"
         )
     )
-    app.run()
+    app.run(host="0.0.0.0")
