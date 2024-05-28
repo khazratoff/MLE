@@ -43,21 +43,18 @@ def create_Dockerfile():
             """
 FROM python:3.11.6-slim
 
-
-RUN pip install --upgrade pip
-RUN apt-get update && apt-get install -y libhdf5-dev
-
 WORKDIR /app
 
-COPY requirements.txt /app/requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt
+COPY . /app/
 
-COPY /online/ /app/online/
-COPY utils.py /app/utils.py
+RUN python -m pip install --upgrade pip && \
+    python -m venv icmd_env && \
+    . icmd_env/bin/activate && \
+    pip install -e .
 
-EXPOSE 5000
+ENV PATH="/app:${PATH}"
 
-CMD [ "python", "/app/online/app.py"]
+CMD icmd_env/bin/python src/ICMD/data_loader.py && icmd_env/bin/python src/ICMD/online/run_inference.py
 """
         )
 
