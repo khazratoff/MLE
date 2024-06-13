@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 .vscode
+.DS_Store
 
 # File Extensions
 *.pickle

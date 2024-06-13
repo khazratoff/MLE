@@ -7,7 +7,7 @@ The project aimed to demonstrate how ML model can be prepared for deployment in 
 
 The project can be logically divided into 3 parts:
 1. `/src` folder containes all the *code*, *scripts*, *dockerfiles* that necessary for the model deployment preparation.
-2. `/tests` contains test that checks input/ output flow behaving correctly. 
+2. `/tests` contains test that checks input/output flow behaving correctly. 
 3. `setup.py` file can be used to package the project.
 ----
 - **Quick Instructions**
@@ -18,7 +18,7 @@ git clone https://github.com/khazratoff/MLE_HWs.git
 cd Module5-Model_Deployment
 ```
 
-**Inferencing** *can be done in* **local environment** *and using* **Docker**. *Let's go through one by one*
+**Inferencing** *can be done in* **local environment** *or using* **Docker**. *Let's go through one by one.*
 
 1. Running inference in local environment:
     1. Create a virtual environment, let's call it "icmd_env":
@@ -31,7 +31,7 @@ cd Module5-Model_Deployment
    ```
    **Use `.` instead of `source` command if you are not using bash shell or another that doesn't support this command*
 
-   3. Setup-tools based installation. Install all necessary dependancies and custom console scripts:
+   3. Setup-tools based installation. Install all necessary dependencies and custom console scripts:
    ```bash
    pip install -e .
    ```
