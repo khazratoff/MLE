@@ -1,4 +1,4 @@
-## ML Engineering by Modules
+## ML Engineering by Modules offered by EPAM
 - **List of Modules**:
     1. [*Core Ideas & Preparation for the course*](#core-ideas)
     2. [*Containerization*](#container)
