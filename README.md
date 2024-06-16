@@ -5,4 +5,5 @@
     3. [*Experiment Tracking*](#ex-track)
     4. [*Pipelines*](#pipeline)
     5. [*Model Deployment*](#model-dep)
+    6. [*Model serving endpoint deployment on AWS Sagemaker*](#model-dep-aws)
 
