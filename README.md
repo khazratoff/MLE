@@ -1,4 +1,4 @@
-## ML Engineering by Modules offered by EPAM Systems
+## ML Engineering by Modules (EPAM inc.)
 - **List of Modules**:
     1. [*Core Ideas*](#core-ideas)
     2. [*Containerization*](#container)
